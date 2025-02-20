@@ -56,6 +56,19 @@ app.post('/users', (req, res) => {
     res.json(newUser);
 });
 
+const delay = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("is over")
+        }, 2000)
+    })
+}
+
+app.get('/delay', async (req, res) => {
+    const e = await delay();
+    res.send(e)
+})
+
 // 6. 启动服务器
 const PORT = 7025;
 app.listen(PORT, () => {
