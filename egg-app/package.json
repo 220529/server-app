@@ -22,7 +22,7 @@
   "scripts": {
     "start": "egg-scripts start --daemon --title=egg-server-egg-app",
     "stop": "egg-scripts stop --title=egg-server-egg-app",
-    "dev": "egg-bin dev",
+    "dev": "egg-bin dev --port 7005",
     "test": "npm run lint -- --fix && npm run test:local",
     "test:local": "egg-bin test",
     "cov": "egg-bin cov",

@@ -14,7 +14,15 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1740037604103_5017';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = ["timer", "robot", "gzip"];
+  config.robot = {
+    ua: [
+      /Baiduspider/i
+    ]
+  }
+  config.gzip = {
+    threshold: 0 // 小于 1k 的响应体不压缩
+  }
 
   // add your user config here
   const userConfig = {
