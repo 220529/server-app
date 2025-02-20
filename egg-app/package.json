@@ -4,15 +4,16 @@
   "description": "",
   "private": true,
   "egg": {
-    "declarations": true
+    "framework": "egg-framework"
   },
   "dependencies": {
     "egg": "^3.17.5",
-    "egg-scripts": "2"
+    "egg-scripts": "2",
+    "egg-view-nunjucks": "^2.3.0"
   },
   "devDependencies": {
     "egg-bin": "6",
-    "egg-mock": "5",
+    "egg-mock": "^5.15.1",
     "eslint": "8",
     "eslint-config-egg": "13"
   },
