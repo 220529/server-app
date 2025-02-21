@@ -24,6 +24,14 @@ module.exports = appInfo => {
     threshold: 0 // 小于 1k 的响应体不压缩
   }
 
+  // 添加 view 配置项
+  config.view = {
+    defaultViewEngine: 'nunjucks',
+    mapping: {
+      '.tpl': 'nunjucks',
+    },
+  }
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
