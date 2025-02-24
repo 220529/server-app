@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "prettier": "3.5.2"
+  },
+  "dependencies": {
+    "@nestjs/config": "^4.0.0"
   }
 }

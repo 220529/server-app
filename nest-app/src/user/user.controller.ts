@@ -1,34 +1,56 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import {
+  Controller,
+  Get,
+  Delete,
+  Post,
+  Put,
+  Body,
+  Param,
+  Query,
+  ParseIntPipe,
+} from "@nestjs/common";
+import { ApiOperation, ApiTags } from "@nestjs/swagger";
 
-@Controller('user')
+import { User } from "./entities/user.entity";
+import { UserService } from "./user.service";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+
+@ApiTags("user")
+@Controller("user")
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
-  }
-
   @Get()
-  findAll() {
-    return this.userService.findAll();
+  @ApiOperation({ summary: "查询所有用户" })
+  getUsers(
+    @Query("pageNo") pageNo: number = 1,
+    @Query("pageSize") pageSize: number = 10,
+  ) {
+    return this.userService.findAll({ pageNo, pageSize });
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+  @Get(":id")
+  @ApiOperation({ summary: "查询单个用户" })
+  getUser(@Param("id", ParseIntPipe) id: number) {
+    return this.userService.findOneById(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  @Post()
+  @ApiOperation({ summary: "创建用户" })
+  addUser(@Body() user: CreateUserDto): any {
+    return this.userService.create(user as User);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+  @Put(":id")
+  @ApiOperation({ summary: "更新用户" })
+  updateUser(@Param("id") id: number, @Body() user: UpdateUserDto): any {
+    return this.userService.update(id, user as User);
+  }
+
+  @Delete(":id")
+  @ApiOperation({ summary: "删除用户" })
+  deleteUser(@Param("id") id: number): any {
+    return this.userService.delete(id);
   }
 }
