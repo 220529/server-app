@@ -3,6 +3,7 @@ import { Logger } from "@nestjs/common";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 import { ValidationPipe } from "./global/validation/validate.pipe";
 import { AnyExceptionsFilter } from "./global/filter/any-exception.filter";
+import { TransformInterceptor } from "./global/interceptor/transform.interceptor";
 // import { HttpExceptionFilter } from './global/filter/http-exception.filter';
 import { AppModule } from "./app.module";
 
@@ -21,6 +22,8 @@ async function bootstrap() {
   // 全局注册异常过滤器
   app.useGlobalFilters(new AnyExceptionsFilter());
   app.useGlobalPipes(new ValidationPipe());
+
+  app.useGlobalInterceptors(new TransformInterceptor());
 
   const port = process.env.PORT ?? 3000;
   await app.listen(port, () => {
