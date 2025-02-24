@@ -1,6 +1,6 @@
-import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
-import { LoggerMiddleware } from './middleware/logger.middleware';
-import { CatModule } from './cat/cat.module';
+import { Module, NestModule, MiddlewareConsumer } from "@nestjs/common";
+import { LoggerMiddleware } from "./global/middleware/logger.middleware";
+import { CatModule } from "./cat/cat.module";
 
 @Module({
   imports: [CatModule],
@@ -8,6 +8,6 @@ import { CatModule } from './cat/cat.module';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     // 全局注册中间件
-    consumer.apply(LoggerMiddleware).forRoutes('*');
+    consumer.apply(LoggerMiddleware).forRoutes("*");
   }
 }

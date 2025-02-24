@@ -1,5 +1,5 @@
-import { Injectable, NestMiddleware } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
+import { Injectable, NestMiddleware, Logger } from "@nestjs/common";
+import { Request, Response, NextFunction } from "express";
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
@@ -8,10 +8,10 @@ export class LoggerMiddleware implements NestMiddleware {
     const start = Date.now();
 
     // 在响应结束后，计算并打印请求的耗时
-    res.on('finish', () => {
+    res.on("finish", () => {
       const end = Date.now();
       const duration = end - start;
-      console.log(`[${req.method}] ${req.originalUrl} - ${duration}ms`);
+      Logger.log(`[${req.method}] ${req.originalUrl} - ${duration}ms`);
     });
 
     next();

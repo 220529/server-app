@@ -1,14 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { CreateCatDto } from './dto/create-cat.dto';
-import { UpdateCatDto } from './dto/update-cat.dto';
-import { Cat } from './interfaces/cat.interface';
+import { Injectable } from "@nestjs/common";
+import { CreateCatDto } from "./dto/create-cat.dto";
+import { UpdateCatDto } from "./dto/update-cat.dto";
+import { Cat } from "./interfaces/cat.interface";
 
 @Injectable()
 export class CatService {
   private readonly cats: Cat[] = [];
 
   create(cat: CreateCatDto) {
-    this.cats.push(cat);
+    return this.cats.push(cat);
   }
 
   findAll(): Cat[] {
