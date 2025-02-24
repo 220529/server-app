@@ -8,9 +8,6 @@ module.exports = {
   htmlWhitespaceSensitivity: 'ignore', // HTML 中空白敏感性
   insertPragma: false, // 是否插入格式化标记
   requirePragma: false, // 是否要求插入格式化标记
-  maxEmptyLines: 1, // 最大空行数
-  jsxBracketSameLine: false, // JSX 的右尖括号是否和内容在同一行
-  ignoreComments: false, // 是否忽略注释
   tabWidth: 2, // 缩进空格数
   useTabs: false, // 是否使用 tab 缩进
 };
