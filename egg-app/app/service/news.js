@@ -16,7 +16,7 @@ class NewsService extends Service {
           endAt: `"${pageSize * page - 1}"`,
         },
         dataType: 'json',
-      },
+      }
     );
 
     // parallel GET detail
@@ -24,7 +24,7 @@ class NewsService extends Service {
       Object.keys(idList).map((key) => {
         const url = `${serverUrl}/item/${idList[key]}.json`;
         return this.ctx.curl(url, { dataType: 'json' });
-      }),
+      })
     );
     return newsList.map((res) => res.data);
   }

@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   res.on('finish', () => {
     const duration = Date.now() - start;
     console.log(
-      `⬅️  [${req.method}] ${req.url} - Status: ${res.statusCode} - ${duration}ms`,
+      `⬅️  [${req.method}] ${req.url} - Status: ${res.statusCode} - ${duration}ms`
     );
   });
 
