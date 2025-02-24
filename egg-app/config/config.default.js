@@ -11,10 +11,10 @@ module.exports = (appInfo) => {
   const config = (exports = {});
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + "_1740037604103_5017";
+  config.keys = appInfo.name + '_1740037604103_5017';
 
   // add your middleware config here
-  config.middleware = ["timer", "robot", "gzip"];
+  config.middleware = ['timer', 'robot', 'gzip'];
   config.robot = {
     ua: [/Baiduspider/i],
   };
@@ -24,16 +24,16 @@ module.exports = (appInfo) => {
 
   // 添加 view 配置项
   config.view = {
-    defaultViewEngine: "nunjucks",
+    defaultViewEngine: 'nunjucks',
     mapping: {
-      ".tpl": "nunjucks",
+      '.tpl': 'nunjucks',
     },
   };
 
   // 添加 news 的配置项
   config.news = {
     pageSize: 5,
-    serverUrl: "https://hacker-news.firebaseio.com/v0",
+    serverUrl: 'https://hacker-news.firebaseio.com/v0',
   };
 
   // add your user config here

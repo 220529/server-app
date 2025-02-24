@@ -1,5 +1,5 @@
 const { Controller } = require('egg');
-const record = require("../../mock/record.json")
+const record = require('../../mock/record.json');
 
 class HomeController extends Controller {
   async index() {
@@ -10,7 +10,7 @@ class HomeController extends Controller {
     const { ctx } = this;
     ctx.body = {
       message: 'hi, robot',
-      data: [record, record, record, record]
+      data: [record, record, record, record],
     };
   }
 }

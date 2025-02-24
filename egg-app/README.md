@@ -1,7 +1,5 @@
 # egg-app
 
-
-
 ## QuickStart
 
 <!-- add docs here for user -->

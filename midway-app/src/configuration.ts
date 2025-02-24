@@ -7,7 +7,7 @@ import { join } from 'path';
 // import { NotFoundFilter } from './filter/notfound.filter';
 import { ReportMiddleware } from './middleware/report.middleware';
 import * as view from '@midwayjs/view-nunjucks';
-import { WeatherErrorFilter } from './filter/weather.filter'
+import { WeatherErrorFilter } from './filter/weather.filter';
 
 @Configuration({
   imports: [
