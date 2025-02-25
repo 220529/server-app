@@ -13,6 +13,7 @@ import { ApiOperation, ApiTags } from "@nestjs/swagger";
 
 import { User } from "./entities/user.entity";
 import { UserService } from "./user.service";
+import { UserDto } from "./dto/user.dto";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 
@@ -32,25 +33,28 @@ export class UserController {
 
   @Get(":id")
   @ApiOperation({ summary: "查询单个用户" })
-  getUser(@Param("id", ParseIntPipe) id: number) {
+  getUser(@Param("id", ParseIntPipe) id: number): Promise<UserDto> {
     return this.userService.findOneById(id);
   }
 
   @Post()
   @ApiOperation({ summary: "创建用户" })
-  addUser(@Body() user: CreateUserDto): any {
-    return this.userService.create(user as User);
+  addUser(@Body() user: CreateUserDto): Promise<UserDto> {
+    return this.userService.create(user);
   }
 
   @Put(":id")
   @ApiOperation({ summary: "更新用户" })
-  updateUser(@Param("id") id: number, @Body() user: UpdateUserDto): any {
+  updateUser(
+    @Param("id") id: number,
+    @Body() user: UpdateUserDto,
+  ): Promise<UserDto> {
     return this.userService.update(id, user as User);
   }
 
   @Delete(":id")
   @ApiOperation({ summary: "删除用户" })
-  deleteUser(@Param("id") id: number): any {
+  deleteUser(@Param("id") id: number): Promise<UserDto> {
     return this.userService.delete(id);
   }
 }

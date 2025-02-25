@@ -1,7 +1,7 @@
 import {
-  ExceptionFilter,
-  Catch,
   ArgumentsHost,
+  Catch,
+  ExceptionFilter,
   HttpException,
   HttpStatus,
 } from "@nestjs/common";
@@ -13,16 +13,21 @@ export class AnyExceptionsFilter implements ExceptionFilter {
     const response = ctx.getResponse();
     const request = ctx.getRequest();
 
-    let status = HttpStatus.INTERNAL_SERVER_ERROR;
-    let message = "";
-    if (exception instanceof HttpException) {
-      status = exception.getStatus();
-      message = exception.getResponse() as string;
-    }
+    // 处理 HTTP 异常
+    const status =
+      exception instanceof HttpException
+        ? exception.getStatus()
+        : HttpStatus.INTERNAL_SERVER_ERROR;
+
+    // 记录错误日志
+    console.error("Unhandled Error:", exception);
 
     response.status(status).json({
       statusCode: status,
-      message,
+      message:
+        exception instanceof HttpException
+          ? exception.getResponse()
+          : "Internal Server Error",
       timestamp: new Date().toISOString(),
       path: request.url,
     });

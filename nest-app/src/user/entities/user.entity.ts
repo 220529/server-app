@@ -1,18 +1,30 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
-import { Exclude } from "class-transformer";
-
-@Entity()
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from "typeorm";
+@Entity("users") // 数据库表名
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn() // 自增 ID
   id: number;
 
-  @Column()
+  @Column({ length: 6 })
   username: string;
 
-  @Column()
-  @Exclude() // 标记不需要返回的字段
+  @Column({ length: 6 })
   password: string;
 
-  @Column()
+  @Column({ default: "" })
   email: string;
+
+  @Column({ type: "simple-array" })
+  roles: number[] = [0];
+
+  @CreateDateColumn() // 自动创建时间
+  createdAt: Date;
+
+  @UpdateDateColumn() // 自动更新时间
+  updatedAt: Date;
 }

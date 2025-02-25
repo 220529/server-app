@@ -1,5 +1,11 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsNotEmpty, IsEmail, Length } from "class-validator";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import {
+  IsString,
+  IsNotEmpty,
+  IsEmail,
+  Length,
+  IsOptional,
+} from "class-validator";
 
 export class CreateUserDto {
   @IsString()
@@ -18,6 +24,7 @@ export class CreateUserDto {
   public password: string;
 
   @IsEmail()
-  @ApiProperty({ description: "The email of the user" })
+  @IsOptional() // 使 email 变为可选字段
+  @ApiPropertyOptional({ description: "The email of the user" })
   public email: string;
 }
