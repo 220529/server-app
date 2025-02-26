@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/rxjs/dist/bundles/rxjs.umd.min.js"></script>
+
+    <script src="https://unpkg.com/@univerjs/presets/lib/umd/index.js"></script>
+
+    <script src="https://unpkg.com/@univerjs/preset-sheets-core/lib/umd/index.js"></script>
+    <script src="https://unpkg.com/@univerjs/preset-sheets-core/lib/umd/locales/zh-CN.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@univerjs/preset-sheets-core/lib/index.css"
+    />
+    <style>
+      html,
+      body,
+      #root,
+      #app {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      const { createUniver } = UniverPresets;
+      const { LocaleType, merge } = UniverCore;
+      const { defaultTheme } = UniverDesign;
+      const { UniverSheetsCorePreset } = UniverPresetSheetsCore;
+
+      const { univerAPI } = createUniver({
+        locale: LocaleType.ZH_CN,
+        locales: {
+          [LocaleType.ZH_CN]: merge({}, UniverPresetSheetsCoreZhCN),
+        },
+        theme: defaultTheme,
+        presets: [UniverSheetsCorePreset()],
+      });
+      const run = async () => {
+        const workbook = await fetch("/api/create-sheet").then((e) => e.json());
+        console.log("workbook...", workbook);
+        univerAPI.createWorkbook(workbook);
+      };
+      run();
+    </script>
+  </body>
+</html>
