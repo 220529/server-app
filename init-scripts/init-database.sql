@@ -1,10 +1,10 @@
 -- 创建数据库(如果不存在)并指定字符集
-CREATE DATABASE IF NOT EXISTS test_db 
+CREATE DATABASE IF NOT EXISTS v1_base 
 CHARACTER SET utf8mb4 
 COLLATE utf8mb4_unicode_ci;
 
 -- 使用数据库
-USE test_db;
+USE v1_base;
 
 -- 设置连接字符集
 SET NAMES 'utf8mb4';

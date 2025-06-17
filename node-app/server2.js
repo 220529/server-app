@@ -2,7 +2,7 @@ const express = require("express");
 const mysql = require("mysql2/promise"); // 使用 promise 版本
 
 const app = express();
-const port = 3000;
+const port = 4000;
 
 // 创建 MySQL 连接池（推荐生产环境使用）
 const pool = mysql.createPool({

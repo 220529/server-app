@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "1.js",
   "scripts": {
+    "pm2": "pm2 start ./server.js -i max",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
