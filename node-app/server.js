@@ -7,6 +7,7 @@ const port = 3000;
 // 创建 MySQL 连接池（推荐生产环境使用）
 const pool = mysql.createPool({
   host: "localhost", // 数据库地址
+  port: 3307, // 数据库端口
   user: "root", // 数据库用户名
   password: "root", // 数据库密码
   database: "v1_base", // 数据库名
